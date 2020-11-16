@@ -70,13 +70,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateSkills(List<String> skills,int userId){
-        User user = userRepository.findById(userId).get();
-        user.setSkills(skills);
-        return userRepository.save(user);
-    }
-
-    @Override
     public User getUser(int id){
         if(userRepository.findById(id).isPresent())
         {
@@ -103,10 +96,6 @@ public class UserServiceImpl implements UserService {
     public User signup(String name,String password,String email,String address,String phone){
         User user = new User();
         List<User> list;
-        List<String> skills = new ArrayList<>();
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String time = sdf.format(d);
         list = userRepository.findAll();
         int maxIndex = list.size()-1;
         int max = 1 + list.get(maxIndex).getId();
@@ -117,28 +106,14 @@ public class UserServiceImpl implements UserService {
         user.setEmail(email);
         user.setAddress(address);
         user.setPhone(phone);
-        user.setEmployeeRate(0);
-        user.setEmployerRate(0);
         user.setIsShow(1);
         user.setAge(20);
         user.setGender("M");
         user.setDescription("Don't have a description");
-        user.setSkills(skills);
         user.setIcon("http://freelancer-images.oss-cn-beijing.aliyuncs.com/hello.jpg");
-        user.setTime(time);
+        user.setFriends(null);
         return userRepository.save(user);
     }
-
-    @Override
-    public List<String> getUserSkills(Integer id){
-        List<String> a = null;
-        if(userRepository.findById(id).isPresent())
-        {
-            a = userRepository.findById(id).get().getSkills();
-        }
-        return a;
-    }
-
 
     @Override
     public void setUserRole(int userId,int role){
@@ -147,4 +122,18 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public List<User> getFriends(int userId) {
+        User user = userRepository.findById(userId).get();
+        return user.getFriends();
+    }
+
+    @Override
+    public void deleteFriends(int userId, List<User> li) {
+        User user = userRepository.findById(userId).get();
+        List<User> l = user.getFriends();
+        for (User i : li) l.remove(i);
+        user.setFriends(l);
+        userRepository.save(user);
+    }
 }

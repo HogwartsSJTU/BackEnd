@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="freelancer_backend" />
         <module name="Hogwarts" />
+        <module name="freelancer_backend" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="13">
+    <bytecodeTargetLevel target="11">
       <module name="freelancer_backend" target="1.8" />
       <module name="Hogwarts" target="1.8" />
     </bytecodeTargetLevel>

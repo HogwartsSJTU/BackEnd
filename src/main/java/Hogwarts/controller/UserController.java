@@ -1,5 +1,6 @@
 package Hogwarts.controller;
 
+import Hogwarts.entity.Message;
 import Hogwarts.entity.User;
 import Hogwarts.security.ManagerLoginToken;
 import Hogwarts.security.PassToken;
@@ -69,12 +70,6 @@ public class UserController {
         return userService.signup(name,password,email,address,phone);
     }
 
-    //通过id获得用户技能
-    @UserLoginToken
-    @GetMapping("/getUserSkills")
-    public List<String> getUserSkills(@RequestParam("id") Integer id){return userService.getUserSkills(id);}
-
-
     //通过id获得user
     @UserLoginToken
     @GetMapping("/getUser")
@@ -84,12 +79,6 @@ public class UserController {
     @UserLoginToken
     @PostMapping("/saveUser")
     public User saveUser(@RequestBody User user){return userService.saveUser(user);}
-
-    @UserLoginToken
-    @PostMapping("/updateSkills")
-    public User updateSkills(@RequestBody List<String> skills,@RequestParam("userId") int userId){
-        return userService.updateSkills(skills,userId);
-    }
 
     @ManagerLoginToken
     @GetMapping("setUserRole")
@@ -104,4 +93,22 @@ public class UserController {
     @PassToken
     @GetMapping("/getOnesIcon")
     public List<String> getOnesIcon(@RequestParam("userId") int userId){return userService.getOnesIcon(userId);}
-  }
+
+    @PassToken
+    @GetMapping("/getFriends")
+    public List<User> getFriends(@RequestParam("userId") int userId) {
+        return userService.getFriends(userId);
+    }
+
+    @PassToken
+    @PostMapping("/deleteFriends")
+    public void deleteFriends(@RequestParam("userId") int userId, @RequestBody List<User> li) {
+        userService.deleteFriends(userId,li);
+    }
+
+//    @PassToken
+//    @PostMapping("/applyFriend")
+//    public void applyFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId) {
+//        userService.
+//    }
+}

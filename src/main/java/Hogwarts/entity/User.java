@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
-@Document(collection = "user")
+@Document(collection = "User")
 public class User {
 
     @Id
@@ -17,17 +17,27 @@ public class User {
     private String address;
     private String phone;
     private int role;
-    private int workNumber;
-    private int publishNumber;
-    private String time;
     private String description;
-    private List<String> skills;
-    private double employeeRate;
-    private int employeeNum;
-    private double employerRate;
-    private int employerNum;
     private int isShow;
     private String icon;
+    private List<User> friends;
+    private List<User> apply;
+
+    public List<User> getApply() {
+        return apply;
+    }
+
+    public void setApply(List<User> apply) {
+        this.apply = apply;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
 
     public void setIcon(String icon) {
         this.icon = icon;
@@ -43,54 +53,6 @@ public class User {
 
     public void setIsShow(int isShow) {
         this.isShow = isShow;
-    }
-
-    public int getPublishNumber() {
-        return publishNumber;
-    }
-
-    public void setPublishNumber(int publishNumber) {
-        this.publishNumber = publishNumber;
-    }
-
-    public int getWorkNumber() {
-        return workNumber;
-    }
-
-    public void setWorkNumber(int workNumber) {
-        this.workNumber = workNumber;
-    }
-
-    public void setEmployeeNum(int employeeNum) {
-        this.employeeNum = employeeNum;
-    }
-
-    public void setEmployerNum(int employerNum) {
-        this.employerNum = employerNum;
-    }
-
-    public int getEmployeeNum() {
-        return employeeNum;
-    }
-
-    public int getEmployerNum() {
-        return employerNum;
-    }
-
-    public void setEmployerRate(double employerRate) {
-        this.employerRate = employerRate;
-    }
-
-    public void setEmployeeRate(double employeeRate) {
-        this.employeeRate = employeeRate;
-    }
-
-    public double getEmployerRate() {
-        return employerRate;
-    }
-
-    public double getEmployeeRate() {
-        return employeeRate;
     }
 
     public void setDescription(String description) {
@@ -117,13 +79,6 @@ public class User {
         return gender;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 
     public int getId() {
         return id;
@@ -180,11 +135,4 @@ public class User {
         return role;
     }
 
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
-
-    public List<String> getSkills() {
-        return skills;
-    }
 }
