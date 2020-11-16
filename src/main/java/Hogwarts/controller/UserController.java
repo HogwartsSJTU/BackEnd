@@ -39,12 +39,12 @@ public class UserController {
     //登录
     @PassToken
     @PostMapping("/login")
-    public Object login(@RequestParam("email") String email,@RequestParam("password") String password){
-        System.out.println(email);
+    public Object login(@RequestParam("phone") String phone,@RequestParam("password") String password){
+        System.out.println(phone);
 
         System.out.println(password);
         JSONObject jsonObject=new JSONObject();
-        User userForBase=userService.findUserByemail(email);
+        User userForBase=userService.findUserByphone(phone);
         if(userForBase==null){
             jsonObject.put("message","登录失败,用户不存在");
             return jsonObject;

@@ -11,7 +11,7 @@ public interface UserService {
     User getUser(int id);
     User saveUser(User user);
     String getToken(User user);
-    User findUserByemail(String email);
+    User findUserByphone(String phone);
     void setUserRole(int userId,int role);
     void setShow(int userId);
     void updateUserInfo(int id, String name, String gender, int age, String address, String phone, String description,String image);
