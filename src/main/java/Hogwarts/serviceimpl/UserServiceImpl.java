@@ -81,8 +81,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(String email, String password){
-        User user = userRepository.login(email,password);
+    public User login(String phone, String password){
+        User user = userRepository.login(phone,password);
         return user;
     }
 
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User signup(String name,String password,String email,String address,String phone){
+    public User signup(String name, String password, String address, String phone){
         User user = new User();
         List<User> list;
         list = userRepository.findAll();
@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(0);
         user.setName(name);
         user.setPassword(password);
-        user.setEmail(email);
+        user.setEmail(null);
         user.setAddress(address);
         user.setPhone(phone);
         user.setIsShow(1);

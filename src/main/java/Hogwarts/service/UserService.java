@@ -4,11 +4,10 @@ import Hogwarts.entity.User;
 
 import java.util.List;
 
-
 public interface UserService {
     List<User> getUsers();
-    User login(String email, String password);
-    User signup(String name,String password,String email,String address,String phone);
+    User login(String phone, String password);
+    User signup(String name,String password,String address,String phone);
     User getUser(int id);
     User saveUser(User user);
     String getToken(User user);
@@ -19,5 +18,4 @@ public interface UserService {
     List<String> getOnesIcon(int userId);
     List<User> getFriends(int userId);
     void deleteFriends(int userId, List<User> li);
-
 }

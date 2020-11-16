@@ -64,10 +64,9 @@ public class UserController {
     //注册
     @PassToken
     @PostMapping("/signup")
-    public User signup(@RequestParam("name") String name,@RequestParam("password") String password,
-                       @RequestParam("email") String email,@RequestParam("address") String address,
-                       @RequestParam("phone") String phone){
-        return userService.signup(name,password,email,address,phone);
+    public User signup(@RequestParam("name") String name, @RequestParam("password") String password,
+                       @RequestParam("address") String address, @RequestParam("phone") String phone){
+        return userService.signup(name,password,address,phone);
     }
 
     //通过id获得user
