@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getToken(User user) {
         String token="";
-        token= JWT.create().withAudience(user.getEmail())
+        token= JWT.create().withAudience(user.getPhone())
                 .sign(Algorithm.HMAC256(user.getPassword()));
         return "Bearer "+token;
     }
