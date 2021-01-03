@@ -28,12 +28,9 @@ public class UserController {
 
     @UserLoginToken
     @PostMapping("/updateUserInfo")
-    public void updateUserInfo(@RequestParam("userId") int userId, @RequestParam("name") String name, @RequestParam("gender") String gender,
-                               @RequestParam("age") int age, @RequestParam("address") String address, @RequestParam("phone") String phone,
-                               @RequestParam("description") String description, @RequestParam("image") String image
-                               )
+    public void updateUserInfo(@RequestBody User user)
     {
-        userService.updateUserInfo(userId,name,gender,age,address,phone,description,image);
+        userService.updateUserInfo(user);
     }
 
     //登录
@@ -101,13 +98,13 @@ public class UserController {
 
     @PassToken
     @PostMapping("/deleteFriends")
-    public void deleteFriends(@RequestParam("userId") int userId, @RequestBody List<User> li) {
+    public void deleteFriends(@RequestParam("userId") int userId, @RequestBody List<Integer> li) {
         userService.deleteFriends(userId,li);
     }
 
-//    @PassToken
-//    @PostMapping("/applyFriend")
-//    public void applyFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId) {
-//        userService.
-//    }
+    @PassToken
+    @PostMapping("/applyFriend")
+    public void applyFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId) {
+        userService.applyFriend(userId,friendId);
+    }
 }
