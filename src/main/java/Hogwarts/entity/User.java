@@ -21,6 +21,7 @@ public class User {
     private String icon;
     private List<Integer> friends;
     private List<Integer> apply;
+    public List<TeamInvite> teamInvites;
 
     public List<Integer> getApply() {
         return apply;
