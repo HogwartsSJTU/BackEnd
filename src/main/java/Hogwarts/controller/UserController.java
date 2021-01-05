@@ -107,4 +107,11 @@ public class UserController {
     public void applyFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId) {
         userService.applyFriend(userId,friendId);
     }
+
+    @PassToken
+    @PostMapping("/addFriend")
+    public void addFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId)
+    {
+        userService.addFriend(userId,friendId);
+    }
 }

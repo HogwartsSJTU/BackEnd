@@ -70,6 +70,15 @@ public class TeamController {
     }
 
     @PassToken
+    @GetMapping("deleteTeam")
+    public void deleteTeam(@RequestParam("tid") int tid)
+    {
+        Team t = team[tid-1];
+        t.state = 0;
+        team[tid-1] = t;
+    }
+
+    @PassToken
     @PostMapping("updatePosition")
     public Team updatePosition(@RequestParam("tid") int tid,@RequestParam("uid") int uid,@RequestParam("x") double x,@RequestParam("y") double y)
     {

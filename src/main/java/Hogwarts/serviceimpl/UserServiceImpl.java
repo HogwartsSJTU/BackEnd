@@ -146,4 +146,24 @@ public class UserServiceImpl implements UserService {
         user.setApply(list);
         userRepository.save(user);
     }
+
+    @Override
+    public void addFriend(int userId,int friendId){
+        User user = userRepository.findById(userId).get();
+        List<Integer> list = user.getApply();
+        for(int i=0;i<list.size();i++)
+        {
+            if(list.get(i) == friendId)
+            {
+                list.remove(i);
+                break;
+            }
+        }
+        user.setApply(list);
+        list = user.getFriends();
+        if(!list.contains(friendId))
+            list.add(friendId);
+        user.setFriends(list);
+        userRepository.save(user);
+    }
 }
