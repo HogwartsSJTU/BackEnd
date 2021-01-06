@@ -13,11 +13,17 @@
   "icon": "https://p.qqan.com/up/2020-9/2020941050205581.jpg",
   "friends": [
     2,
-    3
-  ],
-  "apply": [
+    3,
     4
   ],
+  "apply": [],
+  "teamInvites": [
+    {
+      "uid": 2,
+      "tid": 1
+    }
+  ],
+  "teamId": 0,
   "_class": "Hogwarts.entity.User"
 },{
   "_id": 2,
@@ -39,6 +45,7 @@
     3,
     4
   ],
+  "teamId": 0,
   "_class": "Hogwarts.entity.User"
 },{
   "_id": 3,
@@ -58,7 +65,8 @@
   ],
   "apply": [
     4
-  ]
+  ],
+  "teamId": 0
 },{
   "_id": 4,
   "name": "zyt",
@@ -77,7 +85,8 @@
   ],
   "apply": [
     1
-  ]
+  ],
+  "teamId": 0
 },{
   "_id": 5,
   "name": "lyb",
@@ -96,5 +105,6 @@
   ],
   "apply": [
     2
-  ]
+  ],
+  "teamId": 0
 }]
