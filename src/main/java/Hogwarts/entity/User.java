@@ -22,6 +22,7 @@ public class User {
     private List<Integer> friends;
     private List<Integer> apply;
     public List<TeamInvite> teamInvites;
+    public int teamId;
 
     public List<Integer> getApply() {
         return apply;

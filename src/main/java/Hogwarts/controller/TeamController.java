@@ -34,6 +34,9 @@ public class TeamController {
         t.state = 1;
         team[TeamNum] = t;
         TeamNum++;
+        User u = userRepository.findById(uid).get();
+        u.teamId = t.id;
+        userRepository.save(u);
         return t;
     }
 
@@ -59,6 +62,9 @@ public class TeamController {
         t.people[t.num] = uid;
         t.num++;
         team[(t.id-1)] = t;
+        User u = userRepository.findById(uid).get();
+        u.teamId = tid;
+        userRepository.save(u);
         return t;
     }
 
@@ -76,6 +82,12 @@ public class TeamController {
         Team t = team[tid-1];
         t.state = 0;
         team[tid-1] = t;
+        for(int i=0;i<t.num;i++)
+        {
+            User u = userRepository.findById(t.people[i]).get();
+            u.teamId = 0;
+            userRepository.save(u);
+        }
     }
 
     @PassToken
