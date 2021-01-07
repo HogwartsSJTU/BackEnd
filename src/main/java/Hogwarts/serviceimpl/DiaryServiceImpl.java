@@ -2,17 +2,17 @@ package Hogwarts.serviceimpl;
 
 import Hogwarts.entity.Comment;
 import Hogwarts.entity.Daka;
+import Hogwarts.entity.Diary;
+import Hogwarts.entity.ScenicSpot;
 import Hogwarts.repository.CommentRepository;
 import Hogwarts.repository.DakaRepository;
+import Hogwarts.repository.DiaryRepository;
 import Hogwarts.repository.ScenicSpotRepository;
 import Hogwarts.service.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Service
 public class DiaryServiceImpl implements DiaryService {
@@ -22,19 +22,22 @@ public class DiaryServiceImpl implements DiaryService {
     private ScenicSpotRepository scenicSpotRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private DiaryRepository diaryRepository;
 
     @Override
-    public String create(int uid, Date stime, Date etime) {
+    public Diary create(int uid, Date stime, Date etime) {
         //System.out.println(stime);
         //System.out.println(etime);
         String text = "";
+        List<String> images = new ArrayList();
         List<Daka> rec = dakaRepository.findbydate(uid,stime,etime);
-        if (rec.size()==0) return "No Data";
+        if (rec.size()==0) return null;
         boolean f = false;
         for (Daka i : rec) {
             String s = "";
             Date d = i.getTime();
-            int sid = i.getSid();
+            ScenicSpot ss = scenicSpotRepository.findById(i.getSid()).get();
             Comment com = commentRepository.findbysuid(i.getSid(),i.getUid());
 
             //时间
@@ -56,10 +59,10 @@ public class DiaryServiceImpl implements DiaryService {
                     String.format(Locale.CHINA,"%tA",d)+",";
 
             //地点
-            s += "我去了" + scenicSpotRepository.findById(sid).get().getName() + "。";
+            s += "我去了" + ss.getName() + "。";
 
             //描述
-            String pro = scenicSpotRepository.findById(sid).get().getProfile();
+            String pro = ss.getProfile();
             while (pro.startsWith(" ")) pro = pro.substring(1);
             System.out.println(pro);
             s += pro;
@@ -71,7 +74,23 @@ public class DiaryServiceImpl implements DiaryService {
             else if (com.getGrade()==1) s += "太差了！rnm，退钱！";
             else s += "来到这里真的非常棒！";
             text += s + "\n";
+
+            //图片
+            List<String> image = com.getImages();
+            System.out.println(image.size());
+            System.out.println(ss.getImage());
+            if (image.size() == 0) images.add(ss.getImage());
+            else images.add(com.getImages().get(0));
         }
-        return text;
+        Diary diary = new Diary();
+        diary.setImages(images);
+        diary.setText(text);
+        diary.setUid(uid);
+        List<Diary> li;
+        li = diaryRepository.findAll();
+        int maxIndex = li.size()-1;
+        int max = maxIndex==-1 ? 0 : 1 + li.get(maxIndex).getId();
+        diary.setId(max);
+        return diaryRepository.save(diary);
     }
 }

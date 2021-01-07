@@ -1,6 +1,7 @@
 package Hogwarts.controller;
 
 import Hogwarts.entity.Daka;
+import Hogwarts.entity.Diary;
 import Hogwarts.entity.Note;
 import Hogwarts.repository.CommentRepository;
 import Hogwarts.repository.DakaRepository;
@@ -26,8 +27,8 @@ public class DiaryController {
     @PassToken
     @GetMapping("/creatediary")
     //用户id：uid，开始时间：stime，结束时间etime
-    public String create(@RequestParam("uid") int uid, @RequestParam("stime") Date stime,
-                         @RequestParam("etime") Date etime) {
+    public Diary create(@RequestParam("uid") int uid, @RequestParam("stime") Date stime,
+                        @RequestParam("etime") Date etime) {
         return diaryService.create(uid,stime,etime);
     }
 
