@@ -9,7 +9,7 @@ public interface MessageService {
 
     void createMessage(Message message);
 
-    void read(int userId, int friendId, String text);
+    void read(int userId, int friendId);
 
     boolean redPoint(int userId, int friendId);
 }

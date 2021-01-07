@@ -1,28 +1,31 @@
 package Hogwarts.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
+@Document(collection = "Message")
 public class Message {
-    private int senderid;
-    private int receiverid;
+    private int senderId;
+    private int receiverId;
     private Date time;
     private String text;
     private boolean unread; //false:unread; true:read
 
-    public int getReceiverid() {
-        return receiverid;
+    public int getReceiverId() {
+        return receiverId;
     }
 
-    public int getSenderid() {
-        return senderid;
+    public int getSenderId() {
+        return senderId;
     }
 
-    public void setReceiverid(int receiverid) {
-        this.receiverid = receiverid;
+    public void setReceiverId(int receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public void setSenderid(int senderid) {
-        this.senderid = senderid;
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
     public void setText(String text) {

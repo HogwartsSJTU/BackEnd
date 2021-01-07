@@ -18,7 +18,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> getMessages(int userId, int friendId) {
         List<Message> li = messageRepository.find(userId, friendId);
+        System.out.println(li.size());
         List<Message> li_ = messageRepository.find(friendId, userId);
+        System.out.println(li_.size());
+
         li.addAll(li_);
 //        Collections.sort(li,
 //                new Comparator<Message>() {
@@ -35,7 +38,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void read(int userId, int friendId, String text) { //性能可改进
+    public void read(int userId, int friendId) { //性能可改进
         List<Message> li = messageRepository.find(friendId, userId);
         for (Message i : li) {
             i.setUnread(true);

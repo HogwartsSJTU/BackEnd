@@ -28,9 +28,8 @@ public class MessageController {
 
     @PassToken
     @PostMapping("/read")
-    public boolean read(@RequestParam("userId") int userId, @RequestParam("freindId") int friendId,
-                        @RequestParam("text") String text) {
-        messageService.read(userId,friendId,text);
+    public boolean read(@RequestParam("userId") int userId, @RequestParam("friendId") int friendId) {
+        messageService.read(userId,friendId);
         return true;
     }
 
