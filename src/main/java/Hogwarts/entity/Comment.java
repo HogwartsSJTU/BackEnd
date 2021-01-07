@@ -8,7 +8,7 @@ import java.util.List;
 public class Comment {
 
     @Id
-    private int id;
+    private String id;
     private String text;
     private float grade;
     private int sid;
@@ -45,11 +45,11 @@ public class Comment {
         this.sid = sid;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
