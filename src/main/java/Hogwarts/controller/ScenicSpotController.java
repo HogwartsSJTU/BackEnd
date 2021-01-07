@@ -5,10 +5,9 @@ import Hogwarts.repository.ScenicSpotRepository;
 import Hogwarts.security.PassToken;
 import Hogwarts.service.ScenicSpotService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ScenicSpotController {
@@ -28,9 +27,21 @@ public class ScenicSpotController {
     }
 
     @PassToken
-    @PostMapping("modifyScenicSpot")
+    @PostMapping("/modifyScenicSpot")
     public boolean modify(@RequestBody ScenicSpot scenicSpot) {
         scenicSpotRepository.save(scenicSpot);
         return true;
+    }
+
+    @PassToken
+    @GetMapping("/getAll")
+    public List<ScenicSpot> getAll() {
+        return scenicSpotService.getAll();
+    }
+
+    @PassToken
+    @GetMapping("/getScenicSpot")
+    public ScenicSpot getScenicSpot(int id) {
+        return scenicSpotService.getById(id);
     }
 }

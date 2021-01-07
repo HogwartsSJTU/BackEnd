@@ -32,4 +32,14 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
         return scenicSpotRepository.save(scenicSpot);
     }
 
+    @Override
+    public List<ScenicSpot> getAll() {
+        return scenicSpotRepository.findAll();
+
+    }
+
+    @Override
+    public ScenicSpot getById(int id) {
+        return scenicSpotRepository.findById(id).get();
+    }
 }
