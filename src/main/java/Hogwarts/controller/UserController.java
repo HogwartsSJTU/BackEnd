@@ -114,4 +114,18 @@ public class UserController {
     {
         userService.addFriend(userId,friendId);
     }
+
+    @PassToken
+    @PostMapping("/rejectFriend")
+    public void rejectFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId)
+    {
+        userService.rejectFriend(userId,friendId);
+    }
+
+    @PassToken
+    @PostMapping("/rejectTeam")
+    public void rejectTeam(@RequestParam("userId") int userId,@RequestParam("tid") int tid)
+    {
+        userService.rejectTeam(userId,tid);
+    }
 }
