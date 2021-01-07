@@ -40,4 +40,11 @@ public class DiaryController {
         diaryRepository.deleteById(id);
         return true;
     }
+
+    @PassToken
+    @PostMapping("/modifyDiary")
+    public boolean modify(@RequestParam("diary") Diary diary) {
+        diaryRepository.save(diary);
+        return true;
+    }
 }
