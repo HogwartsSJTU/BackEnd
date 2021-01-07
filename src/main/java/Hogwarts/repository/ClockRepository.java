@@ -1,13 +1,13 @@
 package Hogwarts.repository;
 
-import Hogwarts.entity.Daka;
+import Hogwarts.entity.Clock;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Date;
 import java.util.List;
 
-public interface DakaRepository extends MongoRepository<Daka, Integer> {
+public interface ClockRepository extends MongoRepository<Clock, Integer> {
     @Query(value="{'$and': [{'uid' : ?0}, {'time' : {$gte : ?1, $lte : ?2}}]}")
-    List<Daka> findbydate(int uid, Date stime, Date etime);
+    List<Clock> findbydate(int uid, Date stime, Date etime);
 }

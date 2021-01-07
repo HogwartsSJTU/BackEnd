@@ -1,11 +1,11 @@
 package Hogwarts.serviceimpl;
 
+import Hogwarts.entity.Clock;
 import Hogwarts.entity.Comment;
-import Hogwarts.entity.Daka;
 import Hogwarts.entity.Diary;
 import Hogwarts.entity.ScenicSpot;
 import Hogwarts.repository.CommentRepository;
-import Hogwarts.repository.DakaRepository;
+import Hogwarts.repository.ClockRepository;
 import Hogwarts.repository.DiaryRepository;
 import Hogwarts.repository.ScenicSpotRepository;
 import Hogwarts.service.DiaryService;
@@ -17,7 +17,7 @@ import java.util.*;
 @Service
 public class DiaryServiceImpl implements DiaryService {
     @Autowired
-    private DakaRepository dakaRepository;
+    private ClockRepository clockRepository;
     @Autowired
     private ScenicSpotRepository scenicSpotRepository;
     @Autowired
@@ -27,14 +27,12 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public Diary create(int uid, Date stime, Date etime) {
-        //System.out.println(stime);
-        //System.out.println(etime);
         String text = "";
         List<String> images = new ArrayList();
-        List<Daka> rec = dakaRepository.findbydate(uid,stime,etime);
+        List<Clock> rec = clockRepository.findbydate(uid,stime,etime);
         if (rec.size()==0) return null;
         boolean f = false;
-        for (Daka i : rec) {
+        for (Clock i : rec) {
             String s = "";
             Date d = i.getTime();
             ScenicSpot ss = scenicSpotRepository.findById(i.getSid()).get();
@@ -86,6 +84,7 @@ public class DiaryServiceImpl implements DiaryService {
         diary.setImages(images);
         diary.setText(text);
         diary.setUid(uid);
+        diary.setDate(new Date());
         List<Diary> li;
         li = diaryRepository.findAll();
         int maxIndex = li.size()-1;

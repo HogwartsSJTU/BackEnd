@@ -1,18 +1,12 @@
 package Hogwarts.controller;
 
-import Hogwarts.entity.Daka;
 import Hogwarts.entity.Diary;
-import Hogwarts.entity.Note;
-import Hogwarts.repository.CommentRepository;
-import Hogwarts.repository.DakaRepository;
 import Hogwarts.repository.DiaryRepository;
-import Hogwarts.repository.NoteRepository;
 import Hogwarts.security.PassToken;
-import Hogwarts.service.CommentService;
 import Hogwarts.service.DiaryService;
-import Hogwarts.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +17,8 @@ import java.util.List;
 public class DiaryController {
     @Autowired
     private DiaryService diaryService;
+    @Autowired
+    private DiaryRepository diaryRepository;
 
     @PassToken
     @GetMapping("/creatediary")
@@ -32,4 +28,16 @@ public class DiaryController {
         return diaryService.create(uid,stime,etime);
     }
 
+    @PassToken
+    @GetMapping("/displaydiary")
+    public List<Diary> display(@RequestParam("uid") int uid) {
+        return diaryRepository.findByUid(uid);
+    }
+
+    @PassToken
+    @PostMapping("/deletediary")
+    public boolean deletediary(@RequestParam("id") int id) {
+        diaryRepository.deleteById(id);
+        return true;
+    }
 }

@@ -3,6 +3,7 @@ package Hogwarts.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "Diary")
@@ -12,6 +13,15 @@ public class Diary {
     int uid; //用户id
     String text; //内容
     List<String> images;
+    Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public List<String> getImages() {
         return images;
