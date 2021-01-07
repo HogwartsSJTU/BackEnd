@@ -6,6 +6,7 @@ import Hogwarts.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,18 +15,12 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Override
-    public Comment create(int uid,int sid,String text,int grade) {
-        Comment comment = new Comment();
-        comment.setGrade(grade);
-        comment.setSid(sid);
-        comment.setText(text);
-        comment.setUid(uid);
-        List<Comment> li;
-        li = commentRepository.findAll();
-        int maxIndex = li.size()-1;
-        int max = 1 + li.get(maxIndex).getId();
-        comment.setId(max);
+    public Comment create(Comment comment) {
         return commentRepository.save(comment);
+    }
+    @Override
+    public List<Comment> getComment(int sid){
+        return commentRepository.findbysid(sid);
     }
 
 }

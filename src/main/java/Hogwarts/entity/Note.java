@@ -3,13 +3,14 @@ package Hogwarts.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document(collection = "Note")
 public class Note {
 
     @Id
     private int id;
     private String text;
-    private String time;
     private int sid;
     private int uid;
 
@@ -29,10 +30,6 @@ public class Note {
         return text;
     }
 
-    public String getTime() {
-        return time;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -43,10 +40,6 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public void setUid(int uid) {

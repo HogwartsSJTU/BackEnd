@@ -67,7 +67,7 @@ public class UserController {
     }
 
     //通过id获得user
-    @UserLoginToken
+    @PassToken
     @GetMapping("/getUser")
     public User getUser(@RequestParam("id") int id){return userService.getUser(id);}
 
@@ -113,5 +113,19 @@ public class UserController {
     public void addFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId)
     {
         userService.addFriend(userId,friendId);
+    }
+
+    @PassToken
+    @PostMapping("/rejectFriend")
+    public void rejectFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId)
+    {
+        userService.rejectFriend(userId,friendId);
+    }
+
+    @PassToken
+    @PostMapping("/rejectTeam")
+    public void rejectTeam(@RequestParam("userId") int userId,@RequestParam("tid") int tid)
+    {
+        userService.rejectTeam(userId,tid);
     }
 }
