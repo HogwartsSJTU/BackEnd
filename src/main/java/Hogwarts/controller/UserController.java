@@ -20,7 +20,7 @@ public class UserController {
 
 
     //管理员获得所有用户
-    @ManagerLoginToken
+//    @ManagerLoginToken
     @GetMapping("/getUsers")
     public List<User> getUsers() {
         return userService.getUsers();
@@ -98,8 +98,8 @@ public class UserController {
 
     @PassToken
     @PostMapping("/deleteFriends")
-    public void deleteFriends(@RequestParam("userId") int userId, @RequestBody List<Integer> li) {
-        userService.deleteFriends(userId,li);
+    public void deleteFriends(@RequestParam("userId") int userId, @RequestParam("friendId") int friendId) {
+        userService.deleteFriends(userId,friendId);
     }
 
     @PassToken
