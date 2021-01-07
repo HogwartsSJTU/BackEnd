@@ -13,8 +13,8 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
     @Autowired
     private ScenicSpotRepository scenicSpotRepository;
     @Override
-    public ScenicSpot create(String name, int rate, String image, String audio, float lat,
-                             float lng, int count, int heat, String profile) {
+    public ScenicSpot create(String name, double rate, String image, String audio, double lat,
+                             double lng, int count, int heat, String profile) {
         ScenicSpot scenicSpot = new ScenicSpot();
         scenicSpot.setName(name);
         scenicSpot.setAudio(audio);

@@ -2,6 +2,7 @@ package Hogwarts.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Document(collection = "Comment")
 public class Comment {
@@ -9,15 +10,16 @@ public class Comment {
     @Id
     private int id;
     private String text;
-    private String time;
-    private String image;
-    private int grade;
+    private float grade;
     private int sid;
     private int uid;
+    private List<String> images;
 
-    public String getTime() {
-        return time;
+    public List<String> getImages() {
+        return images;
     }
+
+    public void setImages(List<String> images) {this.images = images; }
 
     public String getText() {
         return text;
@@ -33,10 +35,6 @@ public class Comment {
 
     public void setUid(int uid) {
         this.uid = uid;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public void setText(String text) {
@@ -55,12 +53,12 @@ public class Comment {
         return id;
     }
 
-    public int getGrade() {
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
-    
+
 }

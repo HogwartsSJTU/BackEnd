@@ -11,7 +11,6 @@ public class Note {
     @Id
     private int id;
     private String text;
-    private Date time;
     private int sid;
     private int uid;
 
@@ -31,10 +30,6 @@ public class Note {
         return text;
     }
 
-    public Date getTime() {
-        return time;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -45,10 +40,6 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 
     public void setUid(int uid) {
