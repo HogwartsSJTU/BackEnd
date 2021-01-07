@@ -1,21 +1,31 @@
 package Hogwarts.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
+@Document(collection = "Message")
 public class Message {
-    private User sender;
-    private User receiver;
+    private int senderId;
+    private int receiverId;
     private Date time;
     private String text;
-    private boolean isLiked;
-    private boolean unread;
+    private boolean unread; //false:unread; true:read
 
-    public User getReceiver() {
-        return receiver;
+    public int getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public void setReceiverId(int receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
     public void setText(String text) {
@@ -34,24 +44,8 @@ public class Message {
         return time;
     }
 
-    public boolean isLiked() {
-        return isLiked;
-    }
-
     public boolean isUnread() {
         return unread;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setLiked(boolean liked) {
-        isLiked = liked;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
     }
 
     public void setUnread(boolean unread) {

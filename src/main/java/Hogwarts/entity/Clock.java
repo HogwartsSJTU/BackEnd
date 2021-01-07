@@ -5,12 +5,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "Daka")
-public class Daka {
+@Document(collection = "Clock")
+public class Clock {
     @Id
     int id;
-    int sid; //景点id
     int uid; //用户id
+    int sid; //景点id
     Date time; //打卡时间
 
     public int getId() {

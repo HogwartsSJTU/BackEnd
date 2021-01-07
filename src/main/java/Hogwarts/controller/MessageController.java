@@ -4,9 +4,7 @@ import Hogwarts.entity.Message;
 import Hogwarts.security.PassToken;
 import Hogwarts.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +19,24 @@ public class MessageController {
         return messageService.getMessages(userId, friendId);
     }
 
+    @PassToken
+    @PostMapping("/createMessage")
+    public boolean createMessage(@RequestBody Message message) {
+        messageService.createMessage(message);
+        return true;
+    }
+
+    @PassToken
+    @PostMapping("/read")
+    public boolean read(@RequestParam("userId") int userId, @RequestParam("friendId") int friendId) {
+        messageService.read(userId,friendId);
+        return true;
+    }
+
+    @PassToken
+    @GetMapping("/redPoint")
+    // true 表示有未读消息，false 表示无未读消息
+    public boolean redPoint(@RequestParam("userId") int userId, @RequestParam("friendId") int friendId) {
+        return messageService.redPoint(userId,friendId);
+    }
 }
