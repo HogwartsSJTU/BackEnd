@@ -1,5 +1,6 @@
 package Hogwarts.serviceimpl;
 
+import Hogwarts.entity.Comment;
 import Hogwarts.entity.Note;
 import Hogwarts.repository.NoteRepository;
 import Hogwarts.service.NoteService;
@@ -25,5 +26,10 @@ public class NoteServiceImpl implements NoteService {
         int max = 1 + li.get(maxIndex).getId();
         note.setId(max);
         return noteRepository.save(note);
+    }
+
+    @Override
+    public List<Note> getNote(int sid){
+        return noteRepository.findbysid(sid);
     }
 }

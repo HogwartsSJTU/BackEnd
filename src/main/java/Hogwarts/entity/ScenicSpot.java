@@ -9,11 +9,11 @@ public class ScenicSpot {
     @Id
     private int id;
     private String name;
-    private int rate;
+    private double rate;
     private String image;
     private String audio;
-    private float lat;
-    private float lng;
+    private double lat;
+    private double lng;
     private int count;
     private int heat;
     private String profile;
@@ -35,11 +35,11 @@ public class ScenicSpot {
         this.name = name;
     }
 
-    public float getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public float getLng() {
+    public double getLng() {
         return lng;
     }
 
@@ -51,7 +51,7 @@ public class ScenicSpot {
         return heat;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 
@@ -84,11 +84,11 @@ public class ScenicSpot {
         this.image = image;
     }
 
-    public void setLat(float lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public void setLng(float lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 
@@ -96,7 +96,7 @@ public class ScenicSpot {
         this.profile = profile;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

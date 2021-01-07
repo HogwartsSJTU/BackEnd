@@ -67,7 +67,7 @@ public class UserController {
     }
 
     //通过id获得user
-    @UserLoginToken
+    @PassToken
     @GetMapping("/getUser")
     public User getUser(@RequestParam("id") int id){return userService.getUser(id);}
 
