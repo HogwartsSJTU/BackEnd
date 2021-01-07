@@ -29,16 +29,7 @@ public class UserServiceImpl implements UserService {
     };
 
     @Override
-    public void updateUserInfo(int userId, String name, String gender, int age, String address, String phone, String description,String icon){
-        User user = userRepository.findById(userId).get();
-        user.setName(name);
-        user.setGender(gender);
-        user.setAge(age);
-        user.setAddress(address);
-        user.setPhone(phone);
-        user.setDescription(description);
-        user.setIcon(icon);
-        user.setRole(-2);
+    public void updateUserInfo(User user){
         userRepository.save(user);
     };
 
@@ -74,7 +65,7 @@ public class UserServiceImpl implements UserService {
         if(userRepository.findById(id).isPresent())
         {
             User user = userRepository.findById(id).get();
-            user.setPassword("已隐藏");
+//            user.setPassword("已隐藏");
             return user;
         }
         else return null;
@@ -125,15 +116,62 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getFriends(int userId) {
         User user = userRepository.findById(userId).get();
-        return user.getFriends();
+        List<Integer> list = user.getFriends();
+        List<User> tmp = new ArrayList<>();
+        for(int i=0;i<list.size();i++)
+        {
+            User t  = userRepository.findById(list.get(i)).get();
+            t.setPassword("已隐藏");
+            tmp.add(t);
+        }
+        return tmp;
     }
 
     @Override
-    public void deleteFriends(int userId, List<User> li) {
+    public void deleteFriends(int userId,int friendId) {
         User user = userRepository.findById(userId).get();
-        List<User> l = user.getFriends();
-        for (User i : li) l.remove(i);
+        List<Integer> l = user.getFriends();
+        if(!l.contains(friendId))
+            return;
+        int i = 0;
+        for(;i<l.size();i++)
+            if(l.get(i) == friendId)
+                {
+                    l.remove(i);
+                    break;
+                }
         user.setFriends(l);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void applyFriend(int userId,int friendId){
+        User user = userRepository.findById(friendId).get();
+        List<Integer> list = user.getApply();
+        if(list.contains(userId))
+            return;
+        list.add(userId);
+        user.setApply(list);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void addFriend(int userId,int friendId){
+        User user = userRepository.findById(userId).get();
+        List<Integer> list = user.getApply();
+        for(int i=0;i<list.size();i++)
+        {
+            if(list.get(i) == friendId)
+            {
+                list.remove(i);
+                break;
+            }
+        }
+        user.setApply(list);
+        list = user.getFriends();
+        if(!list.contains(friendId))
+            list.add(friendId);
+        user.setFriends(list);
         userRepository.save(user);
     }
 }

@@ -27,7 +27,7 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
         List<ScenicSpot> li;
         li = scenicSpotRepository.findAll();
         int maxIndex = li.size() - 1;
-        int max = 1 + li.get(maxIndex).getId();
+        int max = 1 + maxIndex;
         scenicSpot.setId(max);
         return scenicSpotRepository.save(scenicSpot);
     }

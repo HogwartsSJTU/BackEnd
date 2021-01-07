@@ -24,6 +24,7 @@ public class ScenicSpot {
 
     public void setId(int id) {
         this.id = id;
+
     }
 
     public String getName() {
@@ -68,6 +69,7 @@ public class ScenicSpot {
 
     public void setAudio(String audio) {
         this.audio = audio;
+
     }
 
     public void setCount(int count) {

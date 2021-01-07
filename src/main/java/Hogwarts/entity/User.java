@@ -7,7 +7,6 @@ import java.util.List;
 @Document(collection = "User")
 public class User {
 
-    @Id
     private Integer id;
     private String name;
     private int age;
@@ -20,22 +19,24 @@ public class User {
     private String description;
     private int isShow;
     private String icon;
-    private List<User> friends;
-    private List<User> apply;
+    private List<Integer> friends;
+    private List<Integer> apply;
+    public List<TeamInvite> teamInvites;
+    public int teamId;
 
-    public List<User> getApply() {
+    public List<Integer> getApply() {
         return apply;
     }
 
-    public void setApply(List<User> apply) {
+    public void setApply(List<Integer> apply) {
         this.apply = apply;
     }
 
-    public void setFriends(List<User> friends) {
+    public void setFriends(List<Integer> friends) {
         this.friends = friends;
     }
 
-    public List<User> getFriends() {
+    public List<Integer> getFriends() {
         return friends;
     }
 

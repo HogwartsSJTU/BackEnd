@@ -25,7 +25,7 @@ public class ScenicAreaServiceImpl implements ScenicAreaService {
         List<ScenicArea> l;
         l = scenicAreaRepository.findAll();
         int maxIndex = li.size()-1;
-        int max = 1 + li.get(maxIndex).getId();
+        int max = 1 + maxIndex;
         scenicArea.setId(max);
         return scenicAreaRepository.save(scenicArea);
     }

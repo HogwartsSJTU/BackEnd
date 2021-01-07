@@ -20,7 +20,7 @@ public class UserController {
 
 
     //管理员获得所有用户
-    @ManagerLoginToken
+//    @ManagerLoginToken
     @GetMapping("/getUsers")
     public List<User> getUsers() {
         return userService.getUsers();
@@ -28,12 +28,9 @@ public class UserController {
 
     @UserLoginToken
     @PostMapping("/updateUserInfo")
-    public void updateUserInfo(@RequestParam("userId") int userId, @RequestParam("name") String name, @RequestParam("gender") String gender,
-                               @RequestParam("age") int age, @RequestParam("address") String address, @RequestParam("phone") String phone,
-                               @RequestParam("description") String description, @RequestParam("image") String image
-                               )
+    public void updateUserInfo(@RequestBody User user)
     {
-        userService.updateUserInfo(userId,name,gender,age,address,phone,description,image);
+        userService.updateUserInfo(user);
     }
 
     //登录
@@ -101,13 +98,20 @@ public class UserController {
 
     @PassToken
     @PostMapping("/deleteFriends")
-    public void deleteFriends(@RequestParam("userId") int userId, @RequestBody List<User> li) {
-        userService.deleteFriends(userId,li);
+    public void deleteFriends(@RequestParam("userId") int userId, @RequestParam("friendId") int friendId) {
+        userService.deleteFriends(userId,friendId);
     }
 
-//    @PassToken
-//    @PostMapping("/applyFriend")
-//    public void applyFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId) {
-//        userService.
-//    }
+    @PassToken
+    @PostMapping("/applyFriend")
+    public void applyFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId) {
+        userService.applyFriend(userId,friendId);
+    }
+
+    @PassToken
+    @PostMapping("/addFriend")
+    public void addFriend(@RequestParam("userId") int userId,@RequestParam("friendId") int friendId)
+    {
+        userService.addFriend(userId,friendId);
+    }
 }

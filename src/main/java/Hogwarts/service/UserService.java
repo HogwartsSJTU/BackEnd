@@ -14,8 +14,10 @@ public interface UserService {
     User findUserByphone(String phone);
     void setUserRole(int userId,int role);
     void setShow(int userId);
-    void updateUserInfo(int id, String name, String gender, int age, String address, String phone, String description,String image);
+    void updateUserInfo(User user);
     List<String> getOnesIcon(int userId);
     List<User> getFriends(int userId);
-    void deleteFriends(int userId, List<User> li);
+    void deleteFriends(int userId,int friendId);
+    void applyFriend(int userId,int friendId);
+    void addFriend(int userId,int friendId);
 }

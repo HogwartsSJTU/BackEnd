@@ -22,5 +22,6 @@ public class ScenicSpotController {
                              @RequestParam("count") int count, @RequestParam("heat") int heat,
                              @RequestParam("profile") String profile) {
         return scenicSpotService.create(name,rate,image,audio,lat,lng,count,heat,profile);
+
     }
 }

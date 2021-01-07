@@ -20,12 +20,12 @@ public class MessageServiceImpl implements MessageService {
         List<Message> li = messageRepository.find(userId, friendId);
         List<Message> li_ = messageRepository.find(friendId, userId);
         li.addAll(li_);
-        Collections.sort(li,
-                new Comparator<Message>() {
-                    public int compare(Message o1, Message o2) {
-                        return o1.getTime().compareTo(o2.getTime());
-                    }
-                });
+//        Collections.sort(li,
+//                new Comparator<Message>() {
+//                    public int compare(Message o1, Message o2) {
+//                        return o1.getTime().compareTo(o2.getTime());
+//                    }
+//                });
         return li;
     }
 }
