@@ -1,5 +1,6 @@
 package Hogwarts.serviceimpl;
 
+import Hogwarts.entity.TeamInvite;
 import Hogwarts.entity.User;
 import Hogwarts.repository.UserRepository;
 import Hogwarts.service.UserService;
@@ -172,6 +173,37 @@ public class UserServiceImpl implements UserService {
         if(!list.contains(friendId))
             list.add(friendId);
         user.setFriends(list);
+        userRepository.save(user);
+    }
+    @Override
+    public void rejectFriend(int userId,int friendId){
+        User user = userRepository.findById(userId).get();
+        List<Integer> list = user.getApply();
+        for(int i=0;i<list.size();i++)
+        {
+            if(list.get(i) == friendId)
+            {
+                list.remove(i);
+                break;
+            }
+        }
+        user.setApply(list);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void rejectTeam(int userId,int tid){
+        User user = userRepository.findById(userId).get();
+        List<TeamInvite> list = user.teamInvites;
+        for(int i=0;i<list.size();i++)
+        {
+            if(list.get(i).tid == tid)
+            {
+                list.remove(i);
+                break;
+            }
+        }
+        user.teamInvites = list;
         userRepository.save(user);
     }
 }

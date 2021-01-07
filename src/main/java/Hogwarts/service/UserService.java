@@ -20,4 +20,6 @@ public interface UserService {
     void deleteFriends(int userId,int friendId);
     void applyFriend(int userId,int friendId);
     void addFriend(int userId,int friendId);
+    void rejectTeam(int userId,int tid);
+    void rejectFriend(int userId,int friendId);
 }
