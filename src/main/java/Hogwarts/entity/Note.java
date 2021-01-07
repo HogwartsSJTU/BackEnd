@@ -3,13 +3,15 @@ package Hogwarts.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document(collection = "Note")
 public class Note {
 
     @Id
     private int id;
     private String text;
-    private String time;
+    private Date time;
     private int sid;
     private int uid;
 
@@ -29,7 +31,7 @@ public class Note {
         return text;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
@@ -45,7 +47,7 @@ public class Note {
         this.text = text;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

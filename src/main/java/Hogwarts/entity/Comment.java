@@ -10,6 +10,7 @@ public class Comment {
     private int id;
     private String text;
     private String time;
+    private String image;
     private int grade;
     private int sid;
     private int uid;
