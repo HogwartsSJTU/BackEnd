@@ -21,7 +21,7 @@ public class DiaryController {
     private DiaryRepository diaryRepository;
 
     @PassToken
-    @GetMapping("/creatediary")
+    @GetMapping("/createDiary")
     //用户id：uid，开始时间：stime，结束时间etime
     public Diary create(@RequestParam("uid") int uid, @RequestParam("stime") Date stime,
                         @RequestParam("etime") Date etime) {
@@ -29,14 +29,14 @@ public class DiaryController {
     }
 
     @PassToken
-    @GetMapping("/displaydiary")
+    @GetMapping("/displayDiary")
     public List<Diary> display(@RequestParam("uid") int uid) {
         return diaryRepository.findByUid(uid);
     }
 
     @PassToken
-    @PostMapping("/deletediary")
-    public boolean deletediary(@RequestParam("id") int id) {
+    @PostMapping("/deleteDiary")
+    public boolean delete(@RequestParam("id") int id) {
         diaryRepository.deleteById(id);
         return true;
     }
