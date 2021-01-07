@@ -17,7 +17,7 @@ public interface UserService {
     void updateUserInfo(User user);
     List<String> getOnesIcon(int userId);
     List<User> getFriends(int userId);
-    void deleteFriends(int userId, List<Integer> li);
+    void deleteFriends(int userId,int friendId);
     void applyFriend(int userId,int friendId);
     void addFriend(int userId,int friendId);
 }

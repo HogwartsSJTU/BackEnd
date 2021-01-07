@@ -10,16 +10,16 @@ public class ScenicSpot {
     private int id;
     private String name;
     private String location;
-    private float lx;
-    private float ly;
+    private double lx;
+    private double ly;
     private String description;
     private int hot;
 
-    public float getLx() {
+    public double getLx() {
         return lx;
     }
 
-    public float getLy() {
+    public double getLy() {
         return ly;
     }
 
@@ -59,11 +59,11 @@ public class ScenicSpot {
         this.location = location;
     }
 
-    public void setLx(float lx) {
+    public void setLx(double lx) {
         this.lx = lx;
     }
 
-    public void setLy(float ly) {
+    public void setLy(double ly) {
         this.ly = ly;
     }
 

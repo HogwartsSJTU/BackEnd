@@ -17,7 +17,7 @@ public class ScenicSpotController {
     @PassToken
     @PostMapping("")
     public ScenicSpot create(@RequestParam("name") String name, @RequestParam("location") String location,
-                             @RequestParam("lx") float lx, @RequestParam("ly") float ly,
+                             @RequestParam("lx") double lx, @RequestParam("ly") double ly,
                              @RequestParam("description") String description, @RequestParam("hot") int hot) {
         return scenicSpotService.create(name,location,lx,ly,description,hot);
     }

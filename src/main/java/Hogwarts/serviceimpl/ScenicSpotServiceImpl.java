@@ -13,7 +13,7 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
     @Autowired
     private ScenicSpotRepository scenicSpotRepository;
     @Override
-    public ScenicSpot create(String name, String location, float lx, float ly, String description, int hot) {
+    public ScenicSpot create(String name, String location, double lx, double ly, String description, int hot) {
         ScenicSpot scenicSpot = new ScenicSpot();
         scenicSpot.setDescription(description);
         scenicSpot.setHot(hot);
@@ -24,7 +24,7 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
         List<ScenicSpot> li;
         li = scenicSpotRepository.findAll();
         int maxIndex = li.size() - 1;
-        int max = 1 + li.get(maxIndex).getId();
+        int max = 1 + maxIndex;
         scenicSpot.setId(max);
         return scenicSpotRepository.save(scenicSpot);
     }

@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         if(userRepository.findById(id).isPresent())
         {
             User user = userRepository.findById(id).get();
-            user.setPassword("已隐藏");
+//            user.setPassword("已隐藏");
             return user;
         }
         else return null;
@@ -128,21 +128,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteFriends(int userId, List<Integer> li) {
+    public void deleteFriends(int userId,int friendId) {
         User user = userRepository.findById(userId).get();
         List<Integer> l = user.getFriends();
-        for (Integer i : li) l.remove(i);
+        if(!l.contains(friendId))
+            return;
+        int i = 0;
+        for(;i<l.size();i++)
+            if(l.get(i) == friendId)
+                {
+                    l.remove(i);
+                    break;
+                }
         user.setFriends(l);
         userRepository.save(user);
     }
 
     @Override
     public void applyFriend(int userId,int friendId){
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findById(friendId).get();
         List<Integer> list = user.getApply();
-        if(list.contains(friendId))
+        if(list.contains(userId))
             return;
-        list.add(friendId);
+        list.add(userId);
         user.setApply(list);
         userRepository.save(user);
     }
