@@ -3,19 +3,26 @@ package Hogwarts.entity;
 import java.util.Date;
 
 public class Message {
-    private User sender;
-    private User receiver;
+    private int senderid;
+    private int receiverid;
     private Date time;
     private String text;
-    private boolean isLiked;
-    private boolean unread;
+    private boolean unread; //false:unread; true:read
 
-    public User getReceiver() {
-        return receiver;
+    public int getReceiverid() {
+        return receiverid;
     }
 
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
+    public int getSenderid() {
+        return senderid;
+    }
+
+    public void setReceiverid(int receiverid) {
+        this.receiverid = receiverid;
+    }
+
+    public void setSenderid(int senderid) {
+        this.senderid = senderid;
     }
 
     public void setText(String text) {
@@ -34,24 +41,8 @@ public class Message {
         return time;
     }
 
-    public boolean isLiked() {
-        return isLiked;
-    }
-
     public boolean isUnread() {
         return unread;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setLiked(boolean liked) {
-        isLiked = liked;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
     }
 
     public void setUnread(boolean unread) {

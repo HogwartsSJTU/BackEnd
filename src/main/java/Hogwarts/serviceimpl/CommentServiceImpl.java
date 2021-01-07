@@ -15,18 +15,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Override
-    public Comment create(int uid,int sid,String text,float grade,List<String> images) {
-        Comment comment = new Comment();
-        comment.setGrade(grade);
-        comment.setSid(sid);
-        comment.setText(text);
-        comment.setUid(uid);
-        comment.setImages(images);
-        List<Comment> li;
-        li = commentRepository.findAll();
-        int maxIndex = li.size()-1;
-        int max = 1 + li.get(maxIndex).getId();
-        comment.setId(max);
+    public Comment create(Comment comment) {
         return commentRepository.save(comment);
     }
     @Override

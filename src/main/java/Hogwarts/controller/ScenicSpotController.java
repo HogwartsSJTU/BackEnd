@@ -29,7 +29,7 @@ public class ScenicSpotController {
 
     @PassToken
     @PostMapping("modifyScenicSpot")
-    public boolean modify(@RequestParam("scenicspot") ScenicSpot scenicSpot) {
+    public boolean modify(@RequestBody ScenicSpot scenicSpot) {
         scenicSpotRepository.save(scenicSpot);
         return true;
     }
